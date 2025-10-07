@@ -49,12 +49,29 @@ export const ProfileFriends = () => {
 
   const { friends } = data;
 
+  const sortedFriends = [...friends].sort((a, b) => {
+    // Top friends go on top
+    const aTop = Boolean(a.topFriend);
+    const bTop = Boolean(b.topFriend);
+    if (aTop !== bTop) return aTop ? -1 : 1;
+
+    // Compare last names
+    const [firstA, lastA] = a.name.split(' ');
+    const [firstB, lastB] = b.name.split(' ');
+
+    const cmpLast = lastA.toLowerCase().localeCompare(lastB.toLowerCase());
+    if (cmpLast) return cmpLast;
+
+    // Tie break by first name if necessary
+    return firstA.toLowerCase().localeCompare(firstB.toLowerCase());
+  });
+
   return (
     <section id="profile-friends">
       <div className="content-card fade-in">
         <h2 className="page-heading-2">Friends</h2>
         <ul className="profile-friends-list">
-          {friends.map((friend, index) => (
+          {sortedFriends.map((friend, index) => (
             <li className="profile-list-item fade-in" key={index}>
               <div className="profile-list-item-avatar">
                 <img className="loading" src={friend.image} />
