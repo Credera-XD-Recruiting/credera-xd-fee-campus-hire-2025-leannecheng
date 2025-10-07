@@ -42,6 +42,13 @@
   margin-bottom: 8px;
 }
 
+.post-author-info .post-metadata {
+  margin-top: 4px;
+  opacity: 0.8;
+  font-size: 0.85em;
+  line-height: 1.2;
+}
+
 /* SKELETON LOADING */
 .post-content.skeleton-block {
   height: 125px;

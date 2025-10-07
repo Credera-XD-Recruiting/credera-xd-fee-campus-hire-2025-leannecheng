@@ -44,6 +44,17 @@ export const ProfilePosts = () => {
               <p className="page-micro">
                 {pinnedPost.jobTitle} @ {pinnedPost.companyName}
               </p>
+              <p className="page-micro post-metadata">
+                <time dateTime={pinnedPost.publishDate}>
+                  {new Date(pinnedPost.publishDate).toLocaleDateString(undefined, {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </time>
+                {" — "}
+                {pinnedPost.city}, {pinnedPost.state}
+              </p>            
             </div>
           </div>
           <p className="page-body post-content fade-in">{pinnedPost.post}</p>
