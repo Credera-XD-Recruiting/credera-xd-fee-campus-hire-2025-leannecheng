@@ -55,10 +55,10 @@
   pointer-events: none;
 }
 
-.profile-group-results-card.activity-active    { --activity-color: #52C1AD; }
-.profile-group-results-card.activity-moderate  { --activity-color: #58B1C9; }
-.profile-group-results-card.activity-low       { --activity-color: #C152A2; }
-.profile-group-results-card.activity-inactive  { --activity-color: #C4C4C4; } 
+.profile-group-results-card.activity-active    { --activity-color: var(--secondary); }
+.profile-group-results-card.activity-moderate  { --activity-color: var(--primary); }
+.profile-group-results-card.activity-low       { --activity-color: var(--warning); }
+.profile-group-results-card.activity-inactive  { --activity-color: var(--grayscale_2); } 
 
 .profile-group-content {
   padding: 16px 8px;

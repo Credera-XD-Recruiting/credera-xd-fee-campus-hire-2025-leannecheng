@@ -2,6 +2,12 @@ import './style.css';
 import { getFriendsListData } from '../../services/profile';
 import { useQuery } from '@tanstack/react-query';
 
+
+const getInitials = (fullName) => {
+  const [first, last] = fullName.split(" ");
+  return (first[0] + last[0]).toUpperCase();
+};
+
 export const ProfileFriends = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['friends'],
@@ -74,7 +80,13 @@ export const ProfileFriends = () => {
           {sortedFriends.map((friend, index) => (
             <li className="profile-list-item fade-in" key={index}>
               <div className="profile-list-item-avatar">
-                <img className="loading" src={friend.image} />
+                {friend.image ? (
+                  <img src={friend.image}/>
+                ) : (
+                  <div className="profile-list-item-avatar-fallback">
+                    {getInitials(friend.name)}
+                  </div>
+                )}
               </div>
               <div className="profile-list-item-info">
                 {friend.topFriend && (
