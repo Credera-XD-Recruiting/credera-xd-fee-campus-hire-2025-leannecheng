@@ -65,7 +65,7 @@ export const ProfileFriends = () => {
                 )}                
                 <p className="page-paragraph">
                   {friend.name}
-                  </p>
+                </p>
                 <p className="page-micro">
                   {friend.jobTitle} @ {friend.companyName}
                 </p>

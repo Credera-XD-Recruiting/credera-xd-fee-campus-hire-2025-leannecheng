@@ -36,8 +36,29 @@
   background-color: var(--grayscale_1);
   text-decoration: none;
   color: var(--midnight_black);
-
+  --activity-color: transparent;
 }
+
+.profile-group-results-card::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--activity-color);
+  border: 2px solid #fff;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 0 4px rgba(0,0,0,.25);
+  pointer-events: none;
+}
+
+.profile-group-results-card.activity-active    { --activity-color: #52C1AD; }
+.profile-group-results-card.activity-moderate  { --activity-color: #58B1C9; }
+.profile-group-results-card.activity-low       { --activity-color: #C152A2; }
+.profile-group-results-card.activity-inactive  { --activity-color: #C4C4C4; } 
 
 .profile-group-content {
   padding: 16px 8px;
