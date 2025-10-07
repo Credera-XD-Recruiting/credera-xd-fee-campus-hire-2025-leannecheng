@@ -39,6 +39,20 @@
   --activity-color: transparent;
 }
 
+.profile-group-results-card.is-favorite {
+  border: 2px solid #f5c518;
+  box-shadow: 0 0 12px rgba(244, 197, 66, 0.6),
+              0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 14px;
+  transform: translateY(-2px);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.profile-group-results-card.is-favorite:hover {
+  box-shadow: 0 0 18px rgba(244, 197, 66, 0.8),
+              0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
 .profile-group-results-card::after {
   content: "";
   position: absolute;
