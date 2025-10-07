@@ -43,11 +43,19 @@ export const ProfileGroups = () => {
 
   const { groups } = data;
 
+  // favorites come first, then alphabetical sort
+  const sortedGroups = [...groups].sort((a, b) => {
+    const aFav = Boolean(a.favorite);
+    const bFav = Boolean(b.favorite);
+    if (aFav !== bFav) return aFav ? -1 : 1;
+    return a.name.toLowerCase().localeCompare(b.name.toLowerCase());
+  });
+
   return (
     <section id="profile-groups">
       <h2 className="page-heading-2">Groups</h2>
       <ul className="profile-group-results fade-in">
-        {groups.map(group => (
+        {sortedGroups.map(group => (
           
           <li className="profile-group-results-item" key={group.id}>
             <a
@@ -55,12 +63,13 @@ export const ProfileGroups = () => {
               group.favorite ? 'is-favorite' : ''
               }`}
               href={group.href}
+              data-activity={group.activity.charAt(0).toUpperCase() + group.activity.slice(1)}
             >
               <div className="profile-group-avatar">
                 <img src={group.image} />
               </div>
               <div className="profile-group-content">
-                <p className="page-paragraph">{group.name}</p>
+                <p className="page-paragraph">{group.name}</p>              
               </div>
             </a>
           </li>

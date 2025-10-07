@@ -79,7 +79,9 @@ export const ProfileFriends = () => {
         <ul className="profile-friends-list">
           {sortedFriends.map((friend, index) => (
             <li className="profile-list-item fade-in" key={index}>
-              <div className="profile-list-item-avatar">
+              <div
+                className={`profile-list-item-avatar ${friend.topFriend ? 'is-top-friend' : ''}`}
+              >
                 {friend.image ? (
                   <img src={friend.image}/>
                 ) : (
@@ -88,10 +90,7 @@ export const ProfileFriends = () => {
                   </div>
                 )}
               </div>
-              <div className="profile-list-item-info">
-                {friend.topFriend && (
-                  <span className="top-friend-flag" >★ Top friend</span>
-                )}                
+              <div className="profile-list-item-info">            
                 <p className="page-paragraph">
                   {friend.name}
                 </p>
