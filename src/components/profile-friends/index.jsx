@@ -2,7 +2,7 @@ import './style.css';
 import { getFriendsListData } from '../../services/profile';
 import { useQuery } from '@tanstack/react-query';
 
-
+// helper function for personalized default pfp
 const getInitials = (fullName) => {
   const [first, last] = fullName.split(" ");
   return (first[0] + last[0]).toUpperCase();

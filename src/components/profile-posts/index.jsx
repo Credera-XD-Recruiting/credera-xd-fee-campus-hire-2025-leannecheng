@@ -1,19 +1,35 @@
 import './style.css';
 import { getProfileData } from '../../services/profile';
+import { getFriendsListData } from '../../services/profile';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 
 
-const PinnedPostCard = ({ post }) => {
+const PinnedPostCard = ({ post, friends }) => {
   const [expanded, setExpanded] = useState(false);
 
+  // Preview text for long posts
   const preview = post.post.slice(0, 100);
   const showToggle = post.post.length > 100;
+
+  // Combine author name and look for a matching friend
+  const authorFullName = `${post.authorFirstName} ${post.authorLastName}`;
+  const matchingFriend = friends?.find(f => f.name === authorFullName);
+  const authorImage = matchingFriend?.image || null;
 
   return (
     <div className="content-card">
       <div className="post-author fade-in">
-        <div className="post-author-avatar fade-in"></div>
+        <div className="post-author-avatar fade-in">
+          {authorImage ? (
+            <img src={authorImage} />
+          ) : (
+            <div className="post-author-avatar-fallback">
+              {post.authorFirstName[0]}
+              {post.authorLastName[0]}
+            </div>
+          )}
+        </div>
         <div className="post-author-info fade-in">
           <p className="page-paragraph">
             {post.authorFirstName} {post.authorLastName}
@@ -57,7 +73,12 @@ export const ProfilePosts = () => {
     queryFn: getProfileData,
   });
 
-  if (isLoading) {
+  const { friendsData, isFriendsLoading } = useQuery({
+    queryKey: ['friends'],
+    queryFn: getFriendsListData,
+  });
+
+  if (isLoading || isFriendsLoading) {
     return (
       <section id="profile-posts">
         <h2 className="page-heading-2">Pinned Posts</h2>
@@ -84,7 +105,7 @@ export const ProfilePosts = () => {
       <h2 className="page-heading-2">Pinned Posts</h2>
       <div className="profile-post-results">
         {pinnedPosts.map((post, index) => (
-          <PinnedPostCard key={index} post={post} />
+          <PinnedPostCard key={index} post={post} friends={friendsData} />
         ))}
       </div>
     </section>

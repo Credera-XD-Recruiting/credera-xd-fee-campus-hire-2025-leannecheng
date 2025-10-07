@@ -2,6 +2,12 @@ import './style.css';
 import { getProfileData } from '../../services/profile';
 import { useQuery } from '@tanstack/react-query';
 
+// helper function for personalized default pfp
+const getInitials = (fullName) => {
+  const [first, last] = fullName.split(' ');
+  return (first[0] + last[0]).toUpperCase();
+};
+
 export const ProfileHeader = () => {
   const { data, isLoading } = useQuery({
     queryKey: ['profile'],
@@ -31,7 +37,9 @@ export const ProfileHeader = () => {
     <section id="profile-header">
       <div className="profile-header">
         <div className="profile-avatar">
-          <img className="loading" src="/avatar.png" />
+          <div className="profile-avatar-fallback">
+          {getInitials(fullName)}
+          </div>
         </div>
         <div className="profile-info content-card">
           <h1 className="profile-info-name">
