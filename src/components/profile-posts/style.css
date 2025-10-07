@@ -5,6 +5,7 @@
 
 #profile-posts .content-card {
   background-color: var(--grayscale_1);
+  margin-bottom: 24px;
 }
 
 .profile-post-results {
@@ -47,6 +48,21 @@
   opacity: 0.8;
   font-size: 0.85em;
   line-height: 1.2;
+}
+
+.see-more-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  padding: 0;
+}
+
+.see-more-btn:hover {
+  text-decoration: underline;
+  color: var(--secondary);
 }
 
 /* SKELETON LOADING */
