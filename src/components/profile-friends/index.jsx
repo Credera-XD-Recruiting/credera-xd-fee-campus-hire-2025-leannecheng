@@ -60,7 +60,12 @@ export const ProfileFriends = () => {
                 <img className="loading" src={friend.image} />
               </div>
               <div className="profile-list-item-info">
-                <p className="page-paragraph">{friend.name}</p>
+                {friend.topFriend && (
+                  <span className="top-friend-flag" >★ Top friend</span>
+                )}                
+                <p className="page-paragraph">
+                  {friend.name}
+                  </p>
                 <p className="page-micro">
                   {friend.jobTitle} @ {friend.companyName}
                 </p>

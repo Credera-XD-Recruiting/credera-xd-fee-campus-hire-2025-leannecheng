@@ -28,7 +28,15 @@
 }
 
 .profile-list-item .top-friend-flag {
-  display: none;
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 9999px;
+  background: #fff;
+  border: 1px solid #f5c518;
+  color: #f5c518;
+  font-size: 12px;
+  font-weight: 600;
+
 }
 
 .profile-list-item .top-friend-flag + .page-paragraph {
